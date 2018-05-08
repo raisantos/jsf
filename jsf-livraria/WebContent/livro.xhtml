@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui">
+
+<!-- isbn input	<f:ajax event="blur" render="messages"/>
+				</p:inputText>  -->
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">Novo Livro</ui:define> <!-- referencia ui:insert do template -->
+	
+	<ui:define name="conteudo">
+	<h:form>
+		<h:outputScript name="jsf.js" library="javax.faces" target="head"/> 
+		<p:messages id="messages" autoUpdate="true"/>
+		<p:growl autoUpdate="true"/>
+		<p:fieldset legend="Dados do Livro">  
+			<h:panelGrid columns="2">
+				
+				<h:outputLabel value="Título: " for="titulo"/>
+				<p:inputText id="titulo" value="#{livroBean.livro.titulo}" required="true" requiredMessage="Título Obrigatório" 
+				validatorMessage="Título não pode ser superior a 40 caracteres">
+					<f:validateLength maximum="40"/>
+					<f:ajax event="blur"/>
+				</p:inputText>
+				
+				<h:outputLabel value="ISBN: " for="isbn"/>
+				<p:inputMask id="isbn" value="#{livroBean.livro.isbn}" required="true" requiredMessage="ISBN Obrigatório" 
+				validator="#{livroBean.comecaComDigitoUm}" mask="999-9-99-999999-9"/>
+				
+				<h:outputLabel value="Preço: " for="preco"/>
+				<p:inputText id="preco" value="#{livroBean.livro.preco}"/>
+				
+				<h:outputLabel value="Data de Lançamento: " for="dataDeLancamento"/>
+				<p:calendar id="dataDeLancamento" value="#{livroBean.livro.dataDeLancamento.time}" 
+				pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+
+			</h:panelGrid>
+		</p:fieldset>
+		
+		
+		<p:fieldset legend="Dados do Autor">
+				<h:outputLabel value="Selecione Autor: " for="autor"/>
+				
+				<p:commandLink value="ou cadastre um novo autor" action="#{livroBean.formAutor}" immediate="true"/>
+				<br/>
+				
+				<p:selectOneMenu value="#{livroBean.autorId}" id="autor">
+					<f:selectItems value="#{livroBean.autores}" var="autor" itemLabel="#{autor.nome}" itemValue="#{autor.id}"/>
+				</p:selectOneMenu>
+				<br />
+				<br />
+				
+				<p:commandButton value="Gravar Autor" action="#{livroBean.gravarAutor}"
+				 process="@this autor" update="autoresAdicionados"/> <!-- p:commandButton tem ajax embutido "execute" e "render"-->
+				 
+				
+				
+				<p:dataTable id="autoresAdicionados" value="#{livroBean.autoresDoLivro}" var="autor"
+				emptyMessage="Nenhum autor associado">
+					<p:column>
+						<h:outputText value="#{autor.nome}"/>
+					</p:column>
+				</p:dataTable>
+
+		</p:fieldset>
+		<p:commandButton value="Gravar" action="#{livroBean.gravar}" process="@form" update="@form :tabelaDeLivros"/>
+	</h:form>
+	
+	<br/>
+	<br/>
+	
+	<p:fieldset legend="Livros Cadastrados">
+		<h:form>
+			<p:commandButton value="Gerar Planilha" ajax="false" immediate="true">
+				<p:fileDownload value="#{demoBean.geraExcel()}"></p:fileDownload>
+			</p:commandButton>
+				
+			<p:commandButton value="Gerar PDF" ajax="false" immediate="true">
+				<p:fileDownload value="#{demoBean.geraPdf()}"></p:fileDownload>
+			</p:commandButton>
+		</h:form>
+			
+		<p:dataTable value="#{livroBean.livros}" var="livro" id="tabelaDeLivros" paginator="true" rows="8">
+			<p:column>
+				<f:facet name="header">Título</f:facet>
+				<h:outputText value="#{livro.titulo}"/>
+			</p:column>
+				
+			<p:column>
+				<f:facet name="header">ISBN</f:facet>
+				<h:outputText value="#{livro.isbn}"/>
+			</p:column>
+				
+			<p:column>
+				<f:facet name="header">Preço</f:facet>
+				<h:outputText value="#{livro.preco}">
+					<f:convertNumber type="currency" pattern="R$ #0.00" currencySymbol="R$" locale="pt_BR"/>
+				</h:outputText>
+			</p:column>
+				
+			<p:column>
+				<f:facet name="header">Data De Lançamento</f:facet>
+				<h:outputText value="#{livro.dataDeLancamento.time}">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+				</h:outputText>
+			</p:column>
+		</p:dataTable>
+	</p:fieldset>
+	</ui:define>
+	
+</ui:composition>
+
+</html>

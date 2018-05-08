@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reports" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13fcdd77-19e2-460a-89b9-7248002a347c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="titulo" class="java.lang.String"/>
+	<field name="isbn" class="java.lang.String"/>
+	<field name="preco" class="java.lang.Double"/>
+	<field name="dataDeLancamento" class="java.util.Calendar"/>
+	<field name="autores" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="-2" y="23" width="560" height="36" uuid="95c7f7e3-b1b7-441c-9d4d-dcb1beea4b3e"/>
+				<textElement textAlignment="Center">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[Relatório]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="40" height="30" uuid="da96f6d6-5992-4814-afb7-d364f444fb66"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Autor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="0" width="120" height="30" uuid="767da374-e95b-424e-b210-9b42980e618f"/>
+				<text><![CDATA[Raí Santos da Soledade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="40" width="33" height="30" uuid="be950b72-ad80-4149-a492-21b79e8c972c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="34" y="40" width="127" height="30" uuid="ba78a7a5-7b52-4293-b378-523b5c435b93"/>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="120" y="1" width="100" height="30" uuid="7a19e78e-db37-44f0-b326-8924ff746ce8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fda72f5d-b912-4a01-9e74-b15b83e06a8e"/>
+				</reportElement>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ISBN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="0" width="100" height="30" uuid="613c114b-25c2-4479-9794-474ee7240687">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="211fe738-5caf-4e2c-b52f-e32cb6eaabb1"/>
+				</reportElement>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Titulo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="254" y="0" width="100" height="30" uuid="fb7d9daa-11cc-491e-87e1-b4a5390de3f4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="255d2229-4834-48e3-bbf9-e552acb354c3"/>
+				</reportElement>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Preco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="412" y="0" width="100" height="30" uuid="4c8fbdb1-478a-4604-9191-7c71f0eef3df">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="84c2ff7f-db4d-4a91-b1fa-1816fcde201a"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data De Lancamento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="75" splitType="Stretch">
+			<textField>
+				<reportElement x="120" y="6" width="100" height="22" uuid="4493814f-ee7c-4b9b-b48e-67e3d08cd8fe">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fda72f5d-b912-4a01-9e74-b15b83e06a8e"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{isbn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="6" width="100" height="23" uuid="abdf1634-5665-4135-a165-4cfb11c0387f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="211fe738-5caf-4e2c-b52f-e32cb6eaabb1"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="254" y="6" width="100" height="22" uuid="e337c110-69b5-49c6-8789-73b9b1a7a944">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="255d2229-4834-48e3-bbf9-e552acb354c3"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{preco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="412" y="6" width="100" height="30" uuid="676e52f0-f457-4582-9fa3-39fd82420406">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="84c2ff7f-db4d-4a91-b1fa-1816fcde201a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{dataDeLancamento}.getTime()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-1" y="2" width="556" height="1" uuid="4c19a527-645d-43eb-90cd-a20daba35d7c"/>
+			</line>
+			<subreport>
+				<reportElement x="0" y="41" width="555" height="30" uuid="4814aa07-6836-483f-8fea-5717e2efc70e"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{autores})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["/home/raisoledade/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/jsf-livraria/reports/subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="31" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="257" y="22" width="52" height="20" uuid="045e35d4-a3a4-4f3e-8728-4d73ee851ca7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TCE-AM]]></text>
+			</staticText>
+			<image>
+				<reportElement x="505" y="7" width="50" height="43" uuid="5e816399-2d70-4380-aff7-561a43b5adde"/>
+				<imageExpression><![CDATA["/home/raisoledade/Imagens/img.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="257" y="16" width="52" height="20" uuid="36cacc27-5742-4bec-95bd-7554bc98aa15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sumário]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
